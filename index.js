@@ -1,10 +1,12 @@
 import React from 'react';
 import { AppRegistry } from 'react-360';
 import Screen from './components/Screen';
+import LoadingScreen from './components/LoadingScreen';
 import Pokemon from './components/Pokemon';
 import PokeBall from './components/PokeBall';
 import World from './components/World';
 
+AppRegistry.registerComponent('LoadingScreen', () => LoadingScreen);
 AppRegistry.registerComponent('Screen', () => Screen);
 AppRegistry.registerComponent('PokeBall1', () => PokeBall);
 AppRegistry.registerComponent('PokeBall2', () => PokeBall);

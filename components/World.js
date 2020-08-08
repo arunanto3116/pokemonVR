@@ -1,9 +1,19 @@
 import React, { PureComponent } from 'react';
 import { asset, NativeModules } from 'react-360';
+import { connect, setPokeballVisibility } from '../Store';
 import Entity from 'Entity';
 const { AudioModule } = NativeModules;
 
-export default class World extends PureComponent {
+class BaseWorld extends PureComponent {
+    componentDidMount() {
+        setTimeout(() => {
+            setPokeballVisibility(true);
+        }, 5000);
+        AudioModule.playEnvironmental({
+            source: asset('pokemon-world-music.mp3'),
+            volume: 0.4
+        });
+    }
     render() {
         return (
             <Entity
@@ -23,3 +33,5 @@ export default class World extends PureComponent {
         );
     }
 }
+const World = connect(BaseWorld);
+export default World;

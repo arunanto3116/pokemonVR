@@ -10,6 +10,11 @@ function init(bundle, parent, options = {}) {
         ...options
     });
 
+    r360.renderToSurface(
+        r360.createRoot('LoadingScreen'),
+        r360.getDefaultSurface()
+    );
+
     const screenSurface = new Surface(800, 400, Surface.SurfaceShape.Flat);
     screenSurface.setAngle(-3.3 /* yaw angle */, 0 /* pitch angle */);
 

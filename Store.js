@@ -9,6 +9,7 @@ import * as React from 'react';
  * ensure all of our elements are synchronized.
  */
 const PokeDesk = {
+    showPokeballs: false,
     showPikachu: false,
     showCubone: false,
     showCharmander: false,
@@ -29,9 +30,15 @@ export function setPokemonVisibility(pokemon) {
     updateComponents();
 }
 
+export function setPokeballVisibility(status) {
+    PokeDesk['showPokeballs'] = status;
+    updateComponents();
+}
+
 export function connect(Component) {
     return class Wrapper extends React.Component {
         state = {
+            showPokeballs: PokeDesk.showPokeballs,
             showPikachu: PokeDesk.showPikachu,
             showCubone: PokeDesk.showCubone,
             showCharmander: PokeDesk.showCharmander,
@@ -40,6 +47,7 @@ export function connect(Component) {
 
         _listener = () => {
             this.setState({
+                showPokeballs: PokeDesk.showPokeballs,
                 showPikachu: PokeDesk.showPikachu,
                 showCubone: PokeDesk.showCubone,
                 showCharmander: PokeDesk.showCharmander,

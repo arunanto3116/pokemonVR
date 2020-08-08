@@ -4,7 +4,6 @@ const { AudioModule } = NativeModules;
 import { connect, setPokemonVisibility } from '../Store';
 import Entity from 'Entity';
 const AnimatedEntity = Animated.createAnimatedComponent(Entity);
-const CLICK_SOUND = asset('pokeball.mp3');
 
 class BasePokeBall extends PureComponent {
     state = {
@@ -13,13 +12,18 @@ class BasePokeBall extends PureComponent {
         close: { size: new Animated.Value(0.2), size1: 0.3, size2: 0.5 },
         pokeballState: 'close'
     };
-    componentDidMount() {
-        Animated.timing(this.state.rotation, {
-            toValue: 1,
-            duration: 1500
-        }).start(({ finished }) => {
-            this.startSizeAnim();
-        });
+    componentDidUpdate(prevProps, prevState) {
+        if (
+            !prevProps.PokeDesk.showPokeballs &&
+            this.props.PokeDesk.showPokeballs
+        ) {
+            Animated.timing(this.state.rotation, {
+                toValue: 1,
+                duration: 1500
+            }).start(({ finished }) => {
+                this.startSizeAnim();
+            });
+        }
     }
     onPokeBallClick = () => {
         const pokeballState =
@@ -27,7 +31,7 @@ class BasePokeBall extends PureComponent {
         this.setState({ pokeballState });
         AudioModule.playOneShot({
             source: asset(`${pokeballState}-pokeball.mp3`),
-            volume: 1
+            volume: 0.2
         });
         setPokemonVisibility(this.props.pokemon);
     };
@@ -60,7 +64,8 @@ class BasePokeBall extends PureComponent {
         });
         const folder = `pokeball/${pokeballState}/`;
         const { x, y, z } = this.props.position;
-        return (
+        const { showPokeballs } = this.props.PokeDesk;
+        return showPokeballs ? (
             <VrButton
                 onClick={() => this.onPokeBallClick()}
                 onEnter={() => this.increaseSizeAnim()}
@@ -80,7 +85,7 @@ class BasePokeBall extends PureComponent {
                     }}
                 />
             </VrButton>
-        );
+        ) : null;
     }
 }
 
