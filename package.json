@@ -1,30 +1,36 @@
 {
-  "name": "Hello360",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node node_modules/react-360/scripts/packager.js",
-    "bundle": "node node_modules/react-360/scripts/bundle.js",
-    "open": "node -e \"require('xopen')('http://localhost:8081/index.html')\"",
-    "devtools": "react-devtools",
-    "test": "jest"
-  },
-  "dependencies": {
-    "react": "16.3.2",
-    "react-native": "~0.55.4",
-    "three": "^0.87.0",
-    "react-360": "~1.1.0",
-    "react-360-web": "~1.1.0"
-  },
-  "devDependencies": {
-    "babel-jest": "^19.0.0",
-    "babel-preset-react-native": "^1.9.1",
-    "jest": "^19.0.2",
-    "react-devtools": "^2.5.2",
-    "react-test-renderer": "16.0.0",
-    "xopen": "1.0.0"
-  },
-  "jest": {
-    "preset": "react-360"
-  }
+    "name": "PokemonVR",
+    "version": "0.0.1",
+    "private": true,
+    "homepage": "https://arunanto3116/github.io/pokemonVR",
+    "scripts": {
+        "start": "node node_modules/react-360/scripts/packager.js",
+        "bundle": "node node_modules/react-360/scripts/bundle.js",
+        "open": "node -e \"require('xopen')('http://localhost:8081/index.html')\"",
+        "devtools": "react-devtools",
+        "test": "jest",
+        "move-assets": "ncp static_assets build/static_assets",
+        "predeploy": "npm run bundle && npm run move-assets",
+        "deploy": "gh-pages -d build"
+    },
+    "dependencies": {
+        "react": "16.3.2",
+        "react-native": "~0.55.4",
+        "three": "^0.87.0",
+        "react-360": "~1.1.0",
+        "react-360-web": "~1.1.0"
+    },
+    "devDependencies": {
+        "babel-jest": "^19.0.0",
+        "babel-preset-react-native": "^1.9.1",
+        "gh-pages": "^3.1.0",
+        "jest": "^19.0.2",
+        "ncp": "^2.0.0",
+        "react-devtools": "^2.5.2",
+        "react-test-renderer": "16.0.0",
+        "xopen": "1.0.0"
+    },
+    "jest": {
+        "preset": "react-360"
+    }
 }
