@@ -8,7 +8,7 @@ class BaseWorld extends PureComponent {
     componentDidMount() {
         setTimeout(() => {
             setPokeballVisibility(true);
-        }, 5000);
+        }, 4000);
         AudioModule.playEnvironmental({
             source: asset('pokemon-world-music.mp3'),
             volume: 0.6
