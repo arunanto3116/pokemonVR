@@ -11,7 +11,7 @@ class BaseWorld extends PureComponent {
         }, 5000);
         AudioModule.playEnvironmental({
             source: asset('pokemon-world-music.mp3'),
-            volume: 0.4
+            volume: 0.6
         });
     }
     render() {

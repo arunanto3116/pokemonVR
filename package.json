@@ -14,8 +14,6 @@
         "deploy": "gh-pages -d build"
     },
     "dependencies": {
-        "babel-preset-env": "^1.7.0",
-        "fast-async": "^6.3.8",
         "react": "16.3.2",
         "react-360": "~1.1.0",
         "react-360-web": "~1.1.0",
