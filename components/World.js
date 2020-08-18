@@ -1,18 +1,25 @@
 import React, { PureComponent } from 'react';
-import { asset, NativeModules } from 'react-360';
+import { asset, Environment } from 'react-360';
+import VideoModule from 'VideoModule';
 import { connect, setPokeballVisibility } from '../Store';
 import Entity from 'Entity';
-const { AudioModule } = NativeModules;
 
 class BaseWorld extends PureComponent {
     componentDidMount() {
         setTimeout(() => {
             setPokeballVisibility(true);
+            //play in-line on a surface
+            Environment.setScreen(
+                'default' /* screen name */,
+                'myplayer' /* player unique id */,
+                'default' /* surface name */,
+                0 /* x */,
+                0 /* y */,
+                800 /* width */,
+                300 /* height */
+            );
+            VideoModule.resume('myplayer');
         }, 4000);
-        AudioModule.playEnvironmental({
-            source: asset('pokemon-world-music.mp3'),
-            volume: 0.6
-        });
     }
     render() {
         return (

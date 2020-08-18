@@ -117,6 +117,14 @@ function init(bundle, parent, options = {}) {
         r360.getDefaultLocation()
     );
 
+    // Creating a Video Player
+    const player = r360.compositor.createVideoPlayer('myplayer');
+    // Set the video to be played, and its format
+    player.setSource(r360.getAssetURL('pokemon-intro.mp4'), '2D', 'mp4');
+    player.setLoop(true);
+    player.setMuted(false);
+    player.setVolume(0.6);
+
     r360.renderToLocation(r360.createRoot('World'), r360.getDefaultLocation());
 }
 
