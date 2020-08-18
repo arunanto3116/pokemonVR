@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
-import { asset, Environment } from 'react-360';
+import { asset, Environment, NativeModules } from 'react-360';
 import VideoModule from 'VideoModule';
 import { connect, setPokeballVisibility } from '../Store';
+const { AudioModule } = NativeModules;
 import Entity from 'Entity';
 
 class BaseWorld extends PureComponent {
     componentDidMount() {
         setTimeout(() => {
             setPokeballVisibility(true);
-            //play in-line on a surface
+            //play video in-line on a surface
             Environment.setScreen(
                 'default' /* screen name */,
                 'myplayer' /* player unique id */,
@@ -19,6 +20,15 @@ class BaseWorld extends PureComponent {
                 300 /* height */
             );
             VideoModule.resume('myplayer');
+
+            // Since there is no support for video player in mobile browsers,
+            // and to makesure atleast audio plays in mobile, I have done a small hack. :)
+            // I have ripped the audio from video and we are playing it as an enviornmental audio
+            // which will play in loop just like our audio.
+            AudioModule.playEnvironmental({
+                source: asset('pokemon-intro.mp3'),
+                volume: 0.6
+            });
         }, 4000);
     }
     render() {

@@ -10,7 +10,9 @@ export default class Screen extends React.PureComponent {
                 <AmbientLight intensity={1.0} color={'#ffffff'} />
                 <PointLight intensity={1} />
                 <View style={styles.greetingBox}>
-                    <Text style={styles.greeting}>Click on the pokeball.</Text>
+                    <Text style={styles.greeting}>
+                        Turn around and click on the pokeball.
+                    </Text>
                 </View>
             </View>
         );
