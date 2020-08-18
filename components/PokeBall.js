@@ -1,5 +1,11 @@
 import React, { PureComponent } from 'react';
-import { asset, Animated, VrButton, NativeModules } from 'react-360';
+import {
+    StyleSheet,
+    asset,
+    Animated,
+    VrButton,
+    NativeModules
+} from 'react-360';
 const { AudioModule } = NativeModules;
 import { connect, setPokemonVisibility } from '../Store';
 import Entity from 'Entity';
@@ -65,11 +71,13 @@ class BasePokeBall extends PureComponent {
         const folder = `pokeball/${pokeballState}/`;
         const { x, y, z } = this.props.position;
         const { showPokeballs } = this.props.PokeDesk;
-        return showPokeballs ? (
+        let itemStyle = showPokeballs ? styles.show : styles.hide;
+        return (
             <VrButton
                 onClick={() => this.onPokeBallClick()}
                 onEnter={() => this.increaseSizeAnim()}
                 onExit={() => this.decreaseSizeAnim()}
+                style={itemStyle}
             >
                 <AnimatedEntity
                     source={{
@@ -85,9 +93,16 @@ class BasePokeBall extends PureComponent {
                     }}
                 />
             </VrButton>
-        ) : null;
+        );
     }
 }
-
+const styles = StyleSheet.create({
+    show: {
+        display: 'flex'
+    },
+    hide: {
+        display: 'none'
+    }
+});
 const PokeBall = connect(BasePokeBall);
 export default PokeBall;

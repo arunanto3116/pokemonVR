@@ -1,5 +1,11 @@
 import React, { PureComponent } from 'react';
-import { asset, Animated, NativeModules, VrButton } from 'react-360';
+import {
+    StyleSheet,
+    asset,
+    Animated,
+    NativeModules,
+    VrButton
+} from 'react-360';
 const { AudioModule } = NativeModules;
 import { connect } from '../Store';
 import Entity from 'Entity';
@@ -53,8 +59,9 @@ class BasePokemon extends PureComponent {
         if (this.props.rotateX) {
             transform.push({ rotateX: this.props.rotateX });
         }
-        return this.state.visible ? (
-            <VrButton onEnter={() => this.playPokemonSound()}>
+        let itemStyle = this.state.visible ? styles.show : styles.hide;
+        return (
+            <VrButton onEnter={() => this.playPokemonSound()} style={itemStyle}>
                 <AnimatedEntity
                     source={{
                         obj: asset(
@@ -67,8 +74,18 @@ class BasePokemon extends PureComponent {
                     style={{ transform }}
                 />
             </VrButton>
-        ) : null;
+        );
     }
 }
+
+const styles = StyleSheet.create({
+    show: {
+        display: 'flex'
+    },
+    hide: {
+        display: 'none'
+    }
+});
+
 const Pokemon = connect(BasePokemon);
 export default Pokemon;

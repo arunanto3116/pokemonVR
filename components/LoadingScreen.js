@@ -33,7 +33,7 @@ class BaseLoadingScreen extends React.Component {
                     style={{
                         position: 'absolute',
                         fontSize: 50,
-                        fontWeight: 'Bold',
+                        fontWeight: 'bold',
                         opacity: this.state.textOpacity
                     }}
                 >
